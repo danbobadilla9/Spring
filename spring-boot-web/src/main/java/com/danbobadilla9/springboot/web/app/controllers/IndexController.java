@@ -1,6 +1,7 @@
 package com.danbobadilla9.springboot.web.app.controllers;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -37,13 +39,21 @@ public class IndexController {
 	
 	@RequestMapping("/listar")
 	public String listar(Model model) {
-		List<Usuario> usuarios = new ArrayList<>();
-		usuarios.add(new Usuario("Dan","Bobadilla","danobadilla9@hotmail.com"));
-		usuarios.add(new Usuario("Israel","Segundo","danisrael@hotmail.com"));
-		usuarios.add(new Usuario("Jose","Perez","josePerez9@hotmail.com"));
+		//List<Usuario> usuarios = new ArrayList<>();
+		// usuarios.add(new Usuario("Dan","Bobadilla","danobadilla9@hotmail.com"));
+		//usuarios.add(new Usuario("Israel","Segundo","danisrael@hotmail.com"));
+		//usuarios.add(new Usuario("Jose","Perez","josePerez9@hotmail.com"));
 		model.addAttribute("title","Listado de usuarios");
-		model.addAttribute("usuarios",usuarios);
+		//model.addAttribute("usuarios",usuarios);
 		return "listar";
+	}
+	
+	@ModelAttribute("usuarios")
+	public List<Usuario> poblarUsuarios(){
+		List<Usuario> usuarios = Arrays.asList(new Usuario("Dan","Bobadilla","danobadilla9@hotmail.com"),
+				new Usuario("Israel","Segundo","danisrael@hotmail.com"),
+				new Usuario("Jose","Perez","josePerez9@hotmail.com"));
+		return usuarios;
 	}
 	
 	
